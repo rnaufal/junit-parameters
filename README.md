@@ -12,7 +12,8 @@ public class OneParameterGenerator implements ParameterGenerator {
     @Override
     public Iterable<Object[]> parameters() {
         return Arrays.asList(new Object[][] { { "foo" }, { "bar" }, 
-                                              { "baz" }, { "code" }, { "java" } });
+                                              { "baz" }, { "code" },
+                                              { "java" } });
     }
 }
 ```
@@ -27,3 +28,7 @@ public void injectSingleParam(String parameter) {
 ```
 
 The JUnit test method will be invoked with each parameter created by the `ParameterGenerator` factory used in the test.
+
+## License
+
+junit-parameters is licensed under the [The MIT License (MIT)](http://choosealicense.com/licenses/mit/)
