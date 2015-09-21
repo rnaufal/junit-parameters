@@ -1,6 +1,6 @@
 # junit-parameters
 
-junit-parameters enables adding parameters to JUnit test methods.
+junit-parameters enables adding parameters to JUnit 4 test methods.
 
 ## Code example
 
