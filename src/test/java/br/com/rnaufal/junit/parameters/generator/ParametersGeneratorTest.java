@@ -1,22 +1,20 @@
 package br.com.rnaufal.junit.parameters.generator;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import br.com.rnaufal.junit.parameters.annotation.ParameterProvider;
+import br.com.rnaufal.junit.parameters.runners.JUnitParameters;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import br.com.rnaufal.junit.parameters.annotation.ParameterProvider;
-import br.com.rnaufal.junit.parameters.generator.ParameterGenerator;
-import br.com.rnaufal.junit.parameters.runners.JUnitParameters;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * 
@@ -25,10 +23,6 @@ import br.com.rnaufal.junit.parameters.runners.JUnitParameters;
  */
 @RunWith(JUnitParameters.class)
 public class ParametersGeneratorTest {
-
-    @Test
-    public void shouldBehaviorLikeDefaultTest() {
-    }
 
     @Test
     @ParameterProvider(TwoParametersGenerator.class)
@@ -57,9 +51,9 @@ public class ParametersGeneratorTest {
     }
     
     private Map<String, List<String>> expectedParams(ParameterGenerator generator) {
-        Map<String, List<String>> expected = new HashMap<String, List<String>>();
+        Map<String, List<String>> expected = new HashMap<>();
         for (Object[] params : generator.parameters()) {
-            String first = String.class.cast(params[0]);
+            String first = (String) params[0];
             String[] parameters = Arrays.copyOf(params, params.length, String[].class);
             expected.put(first, Arrays.asList(parameters));
         }

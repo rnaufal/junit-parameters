@@ -6,9 +6,7 @@ import org.junit.runners.model.Statement;
 import br.com.rnaufal.junit.parameters.generator.ParameterGenerator;
 
 /**
- * 
  * @author rnaufal
- * 
  */
 public class MethodParameterStatement extends Statement {
 
@@ -18,14 +16,16 @@ public class MethodParameterStatement extends Statement {
 
     private final ParameterGenerator generator;
 
-    public MethodParameterStatement(Object test, FrameworkMethod method, ParameterGenerator generator) {
+    public MethodParameterStatement(final Object test,
+                                    final FrameworkMethod method,
+                                    final ParameterGenerator generator) {
         this.test = test;
         this.method = method;
         this.generator = generator;
     }
 
     @Override
-    public void evaluate() throws Throwable {
+    public void evaluate() {
         convertParameters().forEach(params -> {
             try {
                 method.invokeExplosively(test, params);
@@ -36,6 +36,6 @@ public class MethodParameterStatement extends Statement {
     }
 
     private Iterable<Object[]> convertParameters() {
-        return new ParameterTypeCoverterFactory(method).convertParameters(generator.parameters());
+        return new ParameterTypeConverterFactory(method).convertParameters(generator.parameters());
     }
 }

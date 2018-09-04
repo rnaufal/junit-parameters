@@ -11,7 +11,7 @@ public class InvalidTwoParameterGenerator implements ParameterGenerator {
 
     private final String param;
 
-    public InvalidTwoParameterGenerator(String param) {
+    public InvalidTwoParameterGenerator(final String param) {
         this.param = param;
     }
 

@@ -2,7 +2,15 @@
 
 junit-parameters enables adding parameters to JUnit 4 test methods.
 
-## Code example
+## Code examples
+
+* Annotate your test class with the `JUnitParameters` test runner:
+
+```java
+@RunWith(JUnitParameters.class)
+public class ParametersGeneratorTest {
+}
+```
 
 * Implement the interface `ParameterGenerator`:
 

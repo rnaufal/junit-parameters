@@ -1,11 +1,12 @@
 package br.com.rnaufal.junit.parameters.runners;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
-import java.lang.reflect.Method;
-
+import br.com.rnaufal.junit.parameters.annotation.ParameterProvider;
+import br.com.rnaufal.junit.parameters.exception.IncorrectParameterSizeException;
+import br.com.rnaufal.junit.parameters.exception.NotFoundParameterGeneratorException;
+import br.com.rnaufal.junit.parameters.exception.UnableToConvertParameterException;
+import br.com.rnaufal.junit.parameters.exception.UnableToCreateParameterProviderException;
+import br.com.rnaufal.junit.parameters.generator.*;
+import br.com.rnaufal.junit.parameters.statement.MethodParameterStatement;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.internal.runners.statements.InvokeMethod;
@@ -14,19 +15,11 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
-import br.com.rnaufal.junit.parameters.annotation.ParameterProvider;
-import br.com.rnaufal.junit.parameters.exception.IncorrectParameterSizeException;
-import br.com.rnaufal.junit.parameters.exception.NotFoundParameterGeneratorException;
-import br.com.rnaufal.junit.parameters.exception.UnableToConvertParameterException;
-import br.com.rnaufal.junit.parameters.exception.UnableToCreateParameterProviderException;
-import br.com.rnaufal.junit.parameters.generator.BooleanParameterGenerator;
-import br.com.rnaufal.junit.parameters.generator.CharacterParameterGenerator;
-import br.com.rnaufal.junit.parameters.generator.InvalidTwoParameterGenerator;
-import br.com.rnaufal.junit.parameters.generator.NotFoundParameterGenerator;
-import br.com.rnaufal.junit.parameters.generator.NumberParameterGenerator;
-import br.com.rnaufal.junit.parameters.generator.OneParameterGenerator;
-import br.com.rnaufal.junit.parameters.generator.TwoParametersGenerator;
-import br.com.rnaufal.junit.parameters.statement.MethodParameterStatement;
+import java.lang.reflect.Method;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * 
@@ -39,7 +32,7 @@ public class JUnitParametersTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void validTestMethods() throws InitializationError {
+    public void validTestMethods() {
         try {
             new JUnitParameters(ValidTestClass.class);
         } catch (Exception e) {
