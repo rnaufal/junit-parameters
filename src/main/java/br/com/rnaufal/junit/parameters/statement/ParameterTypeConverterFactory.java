@@ -56,15 +56,15 @@ public class ParameterTypeConverterFactory {
             for (int i = 0; i < args.length; i++) {
                 final Class<?> parameterClazz = method.getMethod()
                         .getParameterTypes()[i];
-                params[i] = convert(args[i], parameterClazz);
+                params[i] = convertParameter(args[i], parameterClazz);
             }
             parameters.add(params);
         }
         return parameters;
     }
 
-    private Object convert(final Object parameter,
-                           final Class<?> parameterClass) {
+    private Object convertParameter(final Object parameter,
+                                    final Class<?> parameterClass) {
         return getParameterConverter(parameterClass)
                 .map(converter -> converter.convert(parameter))
                 .orElseThrow(() -> new NotFoundParameterGeneratorException("Cannot convert " + parameter + " to " + parameterClass));
