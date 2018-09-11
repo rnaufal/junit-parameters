@@ -1,5 +1,7 @@
 # junit-parameters
 
+[![Build Status](https://travis-ci.org/rnaufal/junit-parameters.svg?branch=master)](https://travis-ci.org/rnaufal/junit-parameters)
+
 junit-parameters enables adding parameters to JUnit 4 test methods.
 
 ## Code examples
